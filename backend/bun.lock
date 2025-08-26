@@ -4,6 +4,7 @@
     "": {
       "name": "backend",
       "dependencies": {
+        "backend": ".",
         "express": "^5.1.0",
       },
       "devDependencies": {
@@ -33,6 +34,8 @@
     "@types/validator": ["@types/validator@13.15.2", "", {}, "sha512-y7pa/oEJJ4iGYBxOpfAKn5b9+xuihvzDVnC/OSvlVnGxVg0pOqmjiMafiJ1KVNQEaPZf9HsEp5icEwGg8uIe5Q=="],
 
     "accepts": ["accepts@2.0.0", "", { "dependencies": { "mime-types": "^3.0.0", "negotiator": "^1.0.0" } }, "sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng=="],
+
+    "backend": ["backend@file:", { "dependencies": { "express": "^5.1.0" }, "devDependencies": { "@types/bun": "latest", "dotenv": "^17.2.1", "morgan": "^1.10.1", "pg": "^8.16.3", "pg-hstore": "^2.3.4", "sequelize": "^6.37.7" }, "peerDependencies": { "typescript": "^5" } }],
 
     "basic-auth": ["basic-auth@2.0.1", "", { "dependencies": { "safe-buffer": "5.1.2" } }, "sha512-NF+epuEdnUYVlGuhaxbbq+dvJttwLnGY+YixlXlME5KpQ5W3CnXA5cVTneY3SPbPDRkcjMbifrwmFYcClgOZeg=="],
 

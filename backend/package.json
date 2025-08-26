@@ -18,6 +18,7 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "backend": ".",
     "express": "^5.1.0"
   }
 }
