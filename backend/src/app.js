@@ -1,7 +1,14 @@
 import express from 'express'
 import sequelize from './db.js'
+import morgan from 'morgan'
+
+import authRoutes from './routes/auth.routes.js'
 
 const app = express()
+
+// Middleware
+app.use(express.json())
+app.use(morgan('dev'))
 
 try {
   await sequelize.sync({ force: false })
@@ -10,7 +17,9 @@ try {
 }
 
 app.get('/', (req, res) => {
-  res.send('O_o ola desde bun')
+  res.json({ message: 'O_o ok' })
 })
+
+app.use(authRoutes)
 
 export default app
