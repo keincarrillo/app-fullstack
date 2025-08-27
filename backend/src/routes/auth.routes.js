@@ -1,7 +1,7 @@
-import {Router} from isExpression;
-import { singIn, singUp } from "../controllers/auth.controllers";
+import { Router } from 'express'
+import { singIn, singUp } from '../controllers/auth.controllers'
 
-const router = Router();
+const router = Router()
 
 router.post('/signup', singUp)
 router.post('/signin', singIn)
