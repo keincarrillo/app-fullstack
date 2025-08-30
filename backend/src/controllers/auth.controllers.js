@@ -16,7 +16,8 @@ export const singUp = async (req, res) => {
 
     const token = await createAccessToken(id)
 
-    res.status(201).json({ message: 'User created 🎉', token })
+    res.cookie('token', token)
+    res.status(201).json({ message: 'User created 🎉' })
   } catch (error) {
     console.error(error.message)
     res.status(500).json(error.message)
@@ -36,9 +37,11 @@ export const singIn = async (req, res) => {
 
     const validPassword = await bcrypt.compare(password, user.password)
 
-    !validPassword
-      ? res.status(401).json({ message: 'Invalid password' })
-      : res.json({ message: 'User logged in 🎉', token })
+    if (!validPassword)
+      return res.status(401).json({ message: 'Invalid password' })
+
+    res.cookie('token', token)
+    res.json({ message: 'User logged in 🎉' })
   } catch (error) {
     console.error(error)
     res.status(500).json(error.message)
