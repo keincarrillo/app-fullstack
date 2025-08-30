@@ -1,6 +1,7 @@
 import express from 'express'
 import sequelize from './db.js'
 import morgan from 'morgan'
+import cookieParser from 'cookie-parser'
 
 // Routes
 import authRoutes from './routes/auth.routes.js'
@@ -10,9 +11,10 @@ const app = express()
 // Middleware
 app.use(express.json())
 app.use(morgan('dev'))
+app.use(cookieParser()) // El middleware funciona para parsear el header de las cookies y transformalas en un objeto en req.cookies
 
 try {
-  await sequelize.sync({ force: true })
+  await sequelize.sync({ force: false })
 } catch (error) {
   console.error(error.message)
 }
