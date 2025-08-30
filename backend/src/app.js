@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 
 // Routes
 import authRoutes from './routes/auth.routes.js'
+import tasksRoutes from './routes/tasks.routes.js'
 
 const app = express()
 
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 })
 
 // Routes
-app.use('/api/auth', authRoutes)
+app.use('/api', authRoutes)
+app.use('/api', tasksRoutes)
 
 export default app
