@@ -52,3 +52,22 @@ export const logOut = (req, res) => {
   res.cookie('token', '', { expires: new Date(0) })
   return res.json({ message: 'User logged out 🎉' })
 }
+
+export const profile = async (req, res) => {
+  const { userId } = req
+
+  try {
+    const userFound = await User.findByPk(userId, {
+      attributes: ['id', 'userName', 'email']
+    })
+
+    if (!userFound)
+      return res.status(404).json({ message: 'User not found 😕' })
+
+    res.json(userFound)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json(error.message)
+  }
+  res.send('Profile')
+}
