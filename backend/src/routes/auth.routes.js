@@ -9,9 +9,9 @@ import { authRequired } from '../middlewares/validateToken'
 
 const router = Router()
 
-router.post('/signup', singUp)
-router.post('/signin', singIn)
-router.post('/logout', logOut)
-router.get('/profile', authRequired, profile)
+router.post('/auth/signup', singUp)
+router.post('/auth/signin', singIn)
+router.post('/auth/logout', logOut)
+router.get('/auth/profile', authRequired, profile)
 
 export default router
