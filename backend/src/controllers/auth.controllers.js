@@ -47,3 +47,8 @@ export const singIn = async (req, res) => {
     res.status(500).json(error.message)
   }
 }
+
+export const logOut = (req, res) => {
+  res.cookie('token', '', { expires: new Date(0) })
+  return res.json({ message: 'User logged out 🎉' })
+}
