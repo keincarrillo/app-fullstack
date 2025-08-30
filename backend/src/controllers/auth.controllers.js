@@ -1,6 +1,6 @@
 import User from '../models/user.model'
 import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
+import { createAccessToken } from '../libs/jwt'
 
 export const singUp = async (req, res) => {
   const { email, password, userName } = req.body
@@ -14,9 +14,7 @@ export const singUp = async (req, res) => {
       userName
     })
 
-    const token = jwt.sign({ id }, process.env.PRIVATE_KEY, {
-      expiresIn: 60 * 60 * 24
-    })
+    const token = await createAccessToken(id)
 
     res.status(201).json({ message: 'User created 🎉', token })
   } catch (error) {
@@ -34,9 +32,7 @@ export const singIn = async (req, res) => {
     })
     if (!user) return res.status(404).json({ message: 'User not found 😕' })
 
-    const token = jwt.sign({ id: user.id }, process.env.PRIVATE_KEY, {
-      expiresIn: 60 * 60 * 24
-    })
+    const token = await createAccessToken(user.id)
 
     const validPassword = await bcrypt.compare(password, user.password)
 
