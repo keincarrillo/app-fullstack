@@ -1,12 +1,19 @@
 import { useForm } from 'react-hook-form'
-import { signUpRequest } from '../api/auth.js'
+import { useContext, useEffect } from 'react'
+import { AuthContext } from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const SignUpPage = () => {
+  const { signup, isAuthenticated } = useContext(AuthContext)
   const { register, handleSubmit } = useForm()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (isAuthenticated) navigate('/tasks')
+  }, [isAuthenticated])
 
   const onSubmit = handleSubmit(async data => {
-    const res = await signUpRequest(data)
-    console.log(res)
+    await signup(data)
   })
   return (
     <div className="bg-zinc-800 max-w-md p-10 rounded-md">
