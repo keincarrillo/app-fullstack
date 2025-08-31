@@ -5,6 +5,9 @@ import { createAccessToken } from '../libs/jwt'
 export const singUp = async (req, res) => {
   const { email, password, userName } = req.body
   try {
+    const user = await User.findOne({ where: { email } })
+    if (user) return res.status(409).send({ message: 'User already exists' })
+
     const salt = await bcrypt.genSalt(10)
     const passwordHash = await bcrypt.hash(password, salt)
 
