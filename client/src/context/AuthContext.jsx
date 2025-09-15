@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect } from 'react'
 import { signUpRequest, signInRequest } from '../api/auth.js'
-import { set } from 'react-hook-form'
 
 export const AuthContext = createContext()
 
