@@ -1,5 +1,28 @@
+import { useForm } from 'react-hook-form'
+
 const TasksFormPage = () => {
-  return <h1 className="text-3xl text-white">TasksFormPage</h1>
+  const { register, handleSubmit } = useForm()
+  const onSubmit = handleSubmit(data => console.log(data))
+  return (
+    <div>
+      <form action="" onSubmit={onSubmit}>
+        <input
+          type="text"
+          placeholder="Title"
+          {...register('title')}
+          autoFocus
+        />
+        <textarea
+          name=""
+          id=""
+          rows="3"
+          placeholder="Description"
+          {...register('description')}
+        ></textarea>
+        <button>Save</button>
+      </form>
+    </div>
+  )
 }
 
 export default TasksFormPage

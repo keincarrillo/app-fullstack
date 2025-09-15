@@ -14,7 +14,7 @@ export const singUp = async (req, res) => {
     const { id } = await User.create({
       email,
       password: passwordHash,
-      userName
+      userName,
     })
 
     const token = await createAccessToken(id)
@@ -32,7 +32,7 @@ export const singIn = async (req, res) => {
   try {
     const user = await User.findOne({
       where: { email },
-      attributes: ['id', 'password']
+      attributes: ['id', 'password'],
     })
     if (!user) return res.status(404).json({ message: 'User not found 😕' })
 
@@ -61,7 +61,7 @@ export const profile = async (req, res) => {
 
   try {
     const userFound = await User.findByPk(userId, {
-      attributes: ['id', 'userName', 'email']
+      attributes: ['id', 'userName', 'email'],
     })
 
     if (!userFound)

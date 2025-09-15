@@ -17,7 +17,7 @@ app.use(morgan('dev'))
 app.use(cookieParser()) // El middleware funciona para parsear el header de las cookies y transformalas en un objeto en req.cookies
 
 try {
-  await sequelize.sync({ force: true })
+  await sequelize.sync({ force: false })
 } catch (error) {
   console.error(error.message)
 }
