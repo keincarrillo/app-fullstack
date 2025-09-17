@@ -1,7 +1,5 @@
-import axios from 'axios'
+import axios from './axios.js'
 
-const API = `http://localhost:3000/api/auth`
+export const signUpRequest = user => axios.post(`/signup`, user)
 
-export const signUpRequest = user => axios.post(`${API}/signup`, user)
-
-export const signInRequest = user => axios.post(`${API}/signin`, user)
+export const signInRequest = user => axios.post(`/signin`, user)
