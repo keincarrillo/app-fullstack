@@ -11,7 +11,7 @@ import tasksRoutes from './routes/tasks.routes.js'
 const app = express()
 
 // Middleware
-app.use(cors())
+app.use(cors({ credentials: true, origin: 'http://localhost:5173' }))
 app.use(express.json())
 app.use(morgan('dev'))
 app.use(cookieParser()) // El middleware funciona para parsear el header de las cookies y transformalas en un objeto en req.cookies

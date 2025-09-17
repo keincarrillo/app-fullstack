@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react'
 import { signUpRequest, signInRequest } from '../api/auth.js'
+import cookies from 'js-cookie'
 
 export const AuthContext = createContext()
 
@@ -46,6 +47,11 @@ export const AuthProvider = ({ children }) => {
       return () => clearTimeout(timer) // limpiar el timer cuando el componente deje de renderizarse(esto funciona para evitar memory leaks y para reiniciar el timer cada vez que se renderiza el componente)
     }
   }, [errors])
+
+  useEffect(() => {
+    const cookie = cookies.get()
+    console.log(cookie)
+  }, [])
 
   return (
     <AuthContext.Provider
